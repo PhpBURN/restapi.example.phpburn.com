@@ -45,6 +45,14 @@ class main extends RestServer {
     $status = 200;
     
     $body = array('You are trying to delete user: ' . $id);
+    $this->sendResponse($status, $body);
+  }
+  
+  public function editName($id,$name) {
+    $status = 200;
+    $name = urldecode($name);
+    
+    $body = array("You are trying to change user's $id name to $name");
     
     $this->sendResponse($status, $body);
   }
