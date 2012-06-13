@@ -60,6 +60,7 @@ class RestTools {
     header($statusHeader, true, $status);
     header('Content-type: ' . $content_type);
 
+    //just in a matter of this example all responses body will be json encoded
     print json_encode($body);
     die;
   }
