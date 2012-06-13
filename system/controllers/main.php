@@ -43,7 +43,7 @@ class main extends RestServer {
   
   public function delete($id) {
     //accept only gets
-    if($this->getMethod() != 'get')
+    if($this->getMethod() != 'delete')
       $this->sendResponse(404);
     
     
