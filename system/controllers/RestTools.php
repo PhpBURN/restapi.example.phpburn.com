@@ -49,9 +49,8 @@ class RestTools {
     header($statusHeader, true, $status);
     header('Content-type: ' . $content_type);
 
-    if(count($body) > 0) {
-      print json_encode($body);
-    }
+    print json_encode($body);
+    die;
   }
 
   public static function getStatusCodeMessage($code) {
