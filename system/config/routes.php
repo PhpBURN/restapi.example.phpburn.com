@@ -3,6 +3,8 @@
 $routes['__defaultAction'] = 'index';
 $routes['__defaultController'] = 'main';
 
+$routes['users/[0-9]/delete'] = "main/delete/$1";
+
 //Route example (you can also see more at Router documentation)
 //$routes['example'] = "exampleController";
 //$routes['example/([[:alnum:]&:-@_]+)'] = "exampleController/$1";

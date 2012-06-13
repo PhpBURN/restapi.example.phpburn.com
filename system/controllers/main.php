@@ -40,5 +40,13 @@ class main extends RestServer {
     
     $this->sendResponse($status,$item);
   }
+  
+  public function delete($id) {
+    $status = 200;
+    
+    $body = array('You are trying to delete user: ' . $id);
+    
+    $this->sendResponse($status, $body);
+  }
 }
 ?>
