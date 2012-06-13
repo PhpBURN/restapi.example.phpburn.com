@@ -42,8 +42,12 @@ class main extends RestServer {
   }
   
   public function delete($id) {
-    $status = 200;
+    //accept only gets
+    if($this->getMethod() != 'get')
+      $this->sendResponse(404);
     
+    
+    $status = 200;
     $body = array('You are trying to delete user: ' . $id);
     $this->sendResponse($status, $body);
   }

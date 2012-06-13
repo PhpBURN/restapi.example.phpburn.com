@@ -32,6 +32,17 @@ class RestTools {
     parse_str($rawBody, $data);
     return json_decode(json_encode($data));
   }
+  
+  /**
+   * This process a rawBody from an Array format and return it into
+   * a stdClass object
+   * 
+   * @param String $rawBody 
+   * @return stdClass
+   */
+  private static function parseBodyARRAY($rawBody) {
+    return json_decode(json_encode($rawBody));
+  }
 
   /**
    * This process a rawBody from a multipart/form-data format and return it into

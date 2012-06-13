@@ -42,7 +42,7 @@ abstract class RestServer extends Controller {
     //the body data content will ALWAYS be outputed as a stdObject
     switch ($this->getMethod()) {
       case 'get':
-        $this->body = RestTools::parseBody($_GET, $this->allowedContentTypes['formdata']);
+        $this->body = RestTools::parseBody($_GET, 'array');
         break;
       default:
         $this->body = RestTools::parseBody(file_get_contents('php://input'), $this->getInputFormat());
