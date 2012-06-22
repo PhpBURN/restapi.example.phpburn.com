@@ -55,10 +55,17 @@ class RestTools {
     return json_decode(json_encode(simplexml_load_string($rawBody)));
   }
 
-  public static function sendResponse($status = 200, array $body = array(), $content_type = 'application/json', $format = 'json') {
+  public static function sendResponse($status = 200, array $body = array(), $content_type = 'application/json', $format = 'json', array $header = array()) {
     $statusHeader = 'HTTP/1.1 ' . $status . ' ' . self::getStatusCodeMessage($status);
     header($statusHeader, true, $status);
     header('Content-type: ' . $content_type);
+    
+    if(count($header) > 0) {
+      foreach($header as $name => $value) {
+        $_str = sprintf("%s: %s",$name,$value);
+        header($_str);
+      }
+    }
 
     //just in a matter of this example all responses body will be json encoded
     print json_encode($body);

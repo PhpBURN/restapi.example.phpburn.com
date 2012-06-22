@@ -1,8 +1,20 @@
 <?php
 class main extends RestServer {
-	public function index() {
+    public function __construct() {
+      print_r($_SERVER);
+    parent::__construct();
+
+    if (!$this->isAuthenticated()) {
+      $this->sendResponse(401);
+    }
+  }
+  
+  private function isAuthenticated() {
     
-	}
+    
+    
+    return TRUE;
+  }
   
   public function add() {
     $body = array();

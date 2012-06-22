@@ -53,18 +53,32 @@ abstract class RestServer extends Controller {
     parent::__construct();
   }
   
+  /**
+   * This retreives authentication data sent
+   * 
+   * @param Array $params
+   * @param String $type
+   * @return Array 
+   */
+  public function getAuthData(array $params = array(), $type = 'basic') {
+    //For now we support only BASIC AUTHENTICATION
+    $data['username'] = $_SERVER['PHP_AUTH_USER'];
+    $data['password'] = $_SERVER['PHP_AUTH_PW'];
+    
+    return $data;
+  }
+  
   public function sendResponse($status, array $content = array(), array $headers = array(), $contentType = "application/json") {
     
     $headers = array_merge($this->responseHeaders, $headers);
     
     $body = array(
-        'header' => $headers,
         'content' => $content
     );
     
     $format = $this->allowedContentTypes[$contentType];
     
-    RestTools::sendResponse($status, $body, $contentType, $format);
+    RestTools::sendResponse($status, $body, $contentType, $format, $headers);
   }
 
   /**
@@ -119,6 +133,14 @@ abstract class RestServer extends Controller {
   
   public function setAllowedContentTypes(array $contentTypes) {
     $this->allowedContentTypes = $contentTypes;
+  }
+  
+  public function getHeaders() {
+    return $_SERVER;
+  }
+  
+  public function getHeader($name) {
+    return $_SERVER[$name];
   }
 
 }
